@@ -22,6 +22,10 @@ Decrypt with a substitution key with given subs
 void EncyptionofRotationCipher (char ercs[], int key);//ercs means EncryptRotationCipherString this is the string which we will encrypt given a number to shift by int of the key
 void DecryptionofRotationCipherWthKey (char drcwk[], int key); // drcwk means Decryption of Rotation Cipher With Key
 void EncyptionofSubstitutionCipherWthKey(char escs[],char ssk[]);// escs means EncryptSubtitutionCipherString, sk means StringSubtitutionKey
+void DecryptionofRotationCipher(char drc[]);
+void DecryptionofSubCipherwthKey (char dsck[], char subck[]);
+void DecryptionofSubCipherStats (char dscs[]);
+void swap(int *xp, int *yp);
 
 int main(){
     int menu1number;
@@ -75,7 +79,7 @@ int main(){
                     EncyptionofSubstitutionCipherWthKey(Inputmsg3, subkey1);
 
                 }
-                //printf("%s", Inputmsg3);
+                //printf("%s", Inputmsg3);Decryption
                 //printf("%s", subkey1);
         break;
         case 4: Inputfile=fopen("Input.txt","r");// this case is the exactly the same as case 1
@@ -86,15 +90,39 @@ int main(){
                 }
                 if(Inputfile != NULL){
                     fgets(Inputmsg4,1000,Inputfile);
-                    fscanf(Inputfile,"%s",&subkey1);
+                    fscanf(Inputfile,"%s",&subkey2);
                     //printf("%c", subkey1[0]);
-                    (Inputmsg4, subkey2);
+                    DecryptionofSubCipherwthKey(Inputmsg4, subkey2);
 
                 }
         break;
-        case 5:
+        case 5: Inputfile=fopen("Input.txt","r");// this case is the exactly the same as case 1
+                char Inputmsg5[1000000];// subkey2[27];
+                if (Inputfile == NULL){
+                    printf("Error");
+                    return (0);
+                }
+                if(Inputfile != NULL){
+                    fgets(Inputmsg5,1000000,Inputfile);
+                    //fscanf(Inputfile,"%s",&subkey1);
+                    //printf("%c", subkey1[0]);
+                    DecryptionofRotationCipher(Inputmsg5);
+
+                }
         break;
-        case 6:
+        case 6: Inputfile=fopen("Input.txt","r");// this case is the exactly the same as case 1
+                char Inputmsg6[1000000];// subkey2[27];
+                if (Inputfile == NULL){
+                    printf("Error");
+                    return (0);
+                }
+                if(Inputfile != NULL){
+                    fgets(Inputmsg6,1000000,Inputfile);
+                    //fscanf(Inputfile,"%s",&subkey1);
+                    //printf("%c", subkey1[0]);
+                    DecryptionofSubCipherStats(Inputmsg6);
+
+                }
         break;
     }
 
@@ -234,3 +262,233 @@ void EncyptionofSubstitutionCipherWthKey(char escs[],char ssk[]){
     printf("%s", escs);
     return 0;
 }
+
+void DecryptionofRotationCipher(char drc[]){
+    int pos, key;
+    char letter, buf[1000000];
+    for(key = 0; key < 26; key++){
+        for(int count = 0; count<strlen(drc); count++){
+            buf[count] = drc[count];
+        }
+        for(pos = 0; buf[pos] != '\0'; pos++){
+            letter = buf[pos];
+            if(letter >= 'a' && letter <= 'z'){
+                letter = letter - 32;
+            }
+            if(letter >= 'A' && letter <= 'Z'){
+                letter = letter - key;
+            //  printf("%c", letter);
+
+            if(letter < 'A'){
+                letter = letter + 26;
+            }
+            buf[pos] = letter;
+            }
+        }
+        printf("Key: %d String:%s\n",key, buf); }
+    return 0;
+}
+
+void DecryptionofSubCipherwthKey (char dsck[], char subck[]){
+    int pos, poskey;
+    char letter;
+    for(pos = 0; dsck[pos] != '\0'; ++pos){
+            letter = dsck[pos];
+            if(letter >= 'a' && letter <= 'z'){
+                letter = letter - 32;
+            }
+            for(poskey = 0; poskey<26; poskey++){
+                if (letter==subck[poskey]){
+
+                //printf("%c\n", letter);
+                //printf("%d\n",poskey);
+                    switch(poskey){
+                    case 0: letter = 'A';
+                        break;
+                    case 1: letter = 'B';
+                        break;
+                    case 2: letter = 'C';
+                        break;
+                    case 3: letter = 'D';
+                        break;
+                    case 4: letter = 'E';
+                        break;
+                    case 5: letter = 'F';
+                        break;
+                    case 6: letter = 'G';
+                        break;
+                    case 7: letter = 'H';
+                        break;
+                    case 8: letter = 'I';
+                        break;
+                    case 9: letter = 'J';
+                        break;
+                    case 10: letter = 'K';
+                        break;
+                    case 11: letter = 'L';
+                        break;
+                    case 12: letter = 'M';
+                        break;
+                    case 13: letter = 'N';
+                        break;
+                    case 14: letter = 'O';
+                        break;
+                    case 15: letter = 'P';
+                        break;
+                    case 16: letter = 'Q';
+                        break;
+                    case 17: letter = 'R';
+                        break;
+                    case 18: letter = 'S';
+                        break;
+                    case 19: letter = 'T';
+                        break;
+                    case 20: letter = 'U';
+                        break;
+                    case 21: letter = 'V';
+                        break;
+                    case 22: letter = 'W';
+                        break;
+                    case 23: letter = 'X';
+                        break;
+                    case 24: letter = 'Y';
+                        break;
+                    case 25: letter = 'Z';
+                        break;
+
+                    }
+                    break;
+                }
+
+            }
+           // printf("%c\n",letter);
+            dsck[pos]=letter;
+
+
+
+}
+printf("%s", dsck);
+
+}
+
+void DecryptionofSubCipherStats(char dscs[]) {
+    int counter[26] = {0},sortedcounter[26] = {0}, counterpos, pos, j, i;
+    char buf [10000], letter;
+    for(int count = 0; count<strlen(dscs); count++){
+            buf[count] = dscs[count];
+            }
+            printf("%s\n", buf);
+    for(pos = 0; buf[pos] != '\0'; pos++){
+
+            letter = buf[pos];
+            if(letter >= 'a' && letter <= 'z'){
+                letter = letter - 32;
+            }
+            buf[pos] = letter;
+            if(letter >= 'A' && letter <= 'Z'){
+                counterpos = letter - 'A' ;
+                counter[counterpos]++;
+
+            }
+    for(int count = 0; count< 26; count++){
+            sortedcounter[count] = counter[count];
+            //printf("%d\n",sortedcounter[count]);
+            }
+
+    /*
+    Get the array, for each letter increment the coresponding letter
+    use a bubble sort to find which letter is the most frequent make this e, then make the second most frequent t then make the 3rd and so on
+    write to a file, then using fscanf of the output file compare each word to the dictionary
+    if there are no words that match change
+    */
+    }
+
+    for (i = 0; i < 26-1; i++)
+        for (j = 0; j < 26-i-1; j++)
+           if (sortedcounter[j] < sortedcounter[j+1])
+              swap(&sortedcounter[j], &sortedcounter[j+1]);
+    for (pos = 0; buf[pos] != '\0'; pos++){
+        letter = buf[pos];
+        for(int counterpos1 = 0; counterpos1<26; counterpos1++){
+            for(counterpos = 0; counterpos<26; counterpos++){
+                if(sortedcounter[counterpos1]==counter[counterpos]){
+                    switch(counterpos){
+                    case 0: letter = 'E';
+                        break;
+                    case 1: letter = 'T';
+                        break;
+                    case 2: letter = 'A';
+                        break;
+                    case 3: letter = 'O';
+                        break;
+                    case 4: letter = 'I';
+                        break;
+                    case 5: letter = 'N';
+                        break;
+                    case 6: letter = 'S';
+                        break;
+                    case 7: letter = 'R';
+                        break;
+                    case 8: letter = 'H';
+                        break;
+                    case 9: letter = 'D';
+                        break;
+                    case 10: letter = 'L';
+                        break;
+                    case 11: letter = 'U';
+                        break;
+                    case 12: letter = 'C';
+                        break;
+                    case 13: letter = 'M';
+                        break;
+                    case 14: letter = 'F';
+                        break;
+                    case 15: letter = 'Y';
+                        break;
+                    case 16: letter = 'W';
+                        break;
+                    case 17: letter = 'G';
+                        break;
+                    case 18: letter = 'P';
+                        break;
+                    case 19: letter = 'B';
+                        break;
+                    case 20: letter = 'V';
+                        break;
+                    case 21: letter = 'K';
+                        break;
+                    case 22: letter = 'X';
+                        break;
+                    case 23: letter = 'Q';
+                        break;
+                    case 24: letter = 'J';
+                        break;
+                    case 25: letter = 'Z';
+                        break;
+                    }
+                    break;
+                }
+                break;
+            }
+           // break;
+        }
+      buf[pos]=letter;
+    }
+
+     printf("%s\n", buf);
+
+
+    for (counterpos = 0; counterpos<26; counterpos++){
+            printf("%d %d\n", sortedcounter[counterpos], counter[counterpos]);}
+    return;
+}
+
+
+void swap(int *xp, int *yp) {
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+
+
