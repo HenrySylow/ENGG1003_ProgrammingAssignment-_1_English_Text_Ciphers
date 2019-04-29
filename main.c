@@ -287,9 +287,7 @@ void DecryptionofRotationCipher(char drc[]){
     int pos, key;
     char letter, buf[1000];
     int counter[26] = {0},sortedcounter[26] = {0}, thingimtrying[26]={0}, counterpos, pos, swapruntime, swapcomp, counterpos1, whatistheletterfrom0to25;
-    int a, b, c, d, e, f, g, h, i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
     char buf [1000], letter;
-    char keyholder[26] = {'!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!','!'};
 
     //printf("%s\n", keyholder);
     /*for(int count = 0; count<strlen(dscs); count++){
@@ -322,10 +320,10 @@ void DecryptionofRotationCipher(char drc[]){
     */
     }
 
-    for (i = 0; i < 25; i++) { // This is a bubble sort algorithm it runs through the program i number of times where the i is the length of the string
-        for (j = 0; j < 26-i-1; j++){ // For every value of i the program compares the
-           if (sortedcounter[j] < sortedcounter[j+1]){
-              swap(&sortedcounter[j], &sortedcounter[j+1]);
+       for (swapruntime = 0; swapruntime < 25; swapruntime++) { // This is a bubble sort algorithm it runs through the program i number of times where the i is the length of the string
+        for (swapcomp = 0; swapcomp < 26-swapruntime-1; swapcomp++){ // For every value of i the program compares every value to its neibour and swaps it if one is larger
+           if (sortedcounter[swapcomp] < sortedcounter[swapcomp+1]){
+              swap(&sortedcounter[swapcomp], &sortedcounter[swapcomp+1]);
            }
         }
     }
@@ -479,10 +477,10 @@ void DecryptionofSubCipherStats(char dscs[]) {
     */
     }
 
-    for (i = 0; i < 25; i++) { // This is a bubble sort algorithm it runs through the program i number of times where the i is the length of the string
-        for (j = 0; j < 26-i-1; j++){ // For every value of i the program compares the
-           if (sortedcounter[j] < sortedcounter[j+1]){
-              swap(&sortedcounter[j], &sortedcounter[j+1]);
+    for (swapruntime = 0; swapruntime < 25; swapruntime++) { // This is a bubble sort algorithm it runs through the program i number of times where the i is the length of the string
+        for (swapcomp = 0; swapcomp < 26-swapruntime-1; swapcomp++){ // For every value of i the program compares the
+           if (sortedcounter[swapcomp] < sortedcounter[swapcomp+1]){
+              swap(&sortedcounter[swapcomp], &sortedcounter[swapcomp+1]);
            }
         }
     }
