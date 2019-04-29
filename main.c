@@ -97,13 +97,13 @@ int main(){
                 }
         break;
         case 5: Inputfile=fopen("Input.txt","r");// this case is the exactly the same as case 1
-                char Inputmsg5[1000000];// subkey2[27];
+                char Inputmsg5[1000000];//
                 if (Inputfile == NULL){
                     printf("Error");
                     return (0);
                 }
                 if(Inputfile != NULL){
-                    fgets(Inputmsg5,1000000,Inputfile);
+                    fgets(Inputmsg5,1000,Inputfile);
                     //fscanf(Inputfile,"%s",&subkey1);
                     //printf("%c", subkey1[0]);
                     DecryptionofRotationCipher(Inputmsg5);
@@ -111,13 +111,13 @@ int main(){
                 }
         break;
         case 6: Inputfile=fopen("Input.txt","r");// this case is the exactly the same as case 1
-                char Inputmsg6[1000000];// subkey2[27];
+                char Inputmsg6[1000000];
                 if (Inputfile == NULL){
                     printf("Error");
                     return (0);
                 }
                 if(Inputfile != NULL){
-                    fgets(Inputmsg6,1000000,Inputfile);
+                    fgets(Inputmsg6,1000,Inputfile);
                     //fscanf(Inputfile,"%s",&subkey1);
                     //printf("%c", subkey1[0]);
                     DecryptionofSubCipherStats(Inputmsg6);
@@ -188,19 +188,19 @@ void DecryptionofRotationCipherWthKey(char drcwk[], int key){
     return 0;
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//This is a function for Encryption of a message using a substution key
-//
-//
+//This is a function for Encryption of a message using a substution key. It is given the string and the key, and first converts evey letter in that string into an
+//uppercase letter. It then takes the value of the letter from each position in the string and for each letter, it replaces it with letter that is in the equaivalent
+//letter position in the string that holds the key i.e. if the letter is 'A' it will be replaced by what ever letter is in position 0 in the string.
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 void EncyptionofSubstitutionCipherWthKey(char escs[],char ssk[]){
-    int posstring;
-    char letter;
-    for(posstring = 0; escs[posstring] != '\0'; posstring++){
+    int posstring; // Used to call each charactrer in the string to be encrypted
+    char letter; // Take the letter, and enables the character to be edited
+    for(posstring = 0; escs[posstring] != '\0'; posstring++){ // Here we take every value in the string until we reach the null character that was stored by fgets
         letter = escs[posstring];
-        if(letter >= 'a' && letter <= 'z'){
+        if(letter >= 'a' && letter <= 'z'){ // this if statment takes any lowercase letter and makes it uppercase
             letter = letter - 32;
-            escs[posstring] = letter;
+           // escs[posstring] = letter;
         }
         switch (letter){
         case 'A': letter = ssk[0];
@@ -256,16 +256,20 @@ void EncyptionofSubstitutionCipherWthKey(char escs[],char ssk[]){
         case 'Z': letter = ssk[25];
             break;
         }
-        escs[posstring]= letter;
+        escs[posstring]= letter; // move the modified letter into the string
     }
 
-    printf("%s", escs);
+    printf("%s", escs); //print ot the terminal
     return 0;
 }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//
+//
+//
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 void DecryptionofRotationCipher(char drc[]){
     int pos, key;
-    char letter, buf[1000000];
+    char letter, buf[1000];
     for(key = 0; key < 26; key++){
         for(int count = 0; count<strlen(drc); count++){
             buf[count] = drc[count];
@@ -288,21 +292,24 @@ void DecryptionofRotationCipher(char drc[]){
         printf("Key: %d String:%s\n",key, buf); }
     return 0;
 }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//This function, takes the message to be decrypted and the key and takes each after being converted to uppercase if needs be, it then scans
+//
+//
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 void DecryptionofSubCipherwthKey (char dsck[], char subck[]){
-    int pos, poskey;
+    int pos, poskey; //poskey is to call the values in the key from the string subck
     char letter;
-    for(pos = 0; dsck[pos] != '\0'; ++pos){
+    for(pos = 0; dsck[pos] != '\0'; ++pos){ // Converting to uppercase
             letter = dsck[pos];
             if(letter >= 'a' && letter <= 'z'){
                 letter = letter - 32;
             }
-            for(poskey = 0; poskey<26; poskey++){
-                if (letter==subck[poskey]){
+            for(poskey = 0; poskey < 26; poskey++){ //for every position in the key run this until the poskey is at 25 or the break is hit
+                if (letter == subck [poskey]){ // If the letter in the matches the letter in the key
 
-                //printf("%c\n", letter);
-                //printf("%d\n",poskey);
-                    switch(poskey){
+                    switch(poskey){ /*(his changes the letter to the letter that should be in the correspoing position, so lets say our letter is 'B' and B is in the first
+                    position in our key, it will turn that 'B' into an 'A'*/
                     case 0: letter = 'A';
                         break;
                     case 1: letter = 'B';
@@ -357,7 +364,7 @@ void DecryptionofSubCipherwthKey (char dsck[], char subck[]){
                         break;
 
                     }
-                    break;
+                    break; // breaks out of the for loop if the if condition is met
                 }
 
             }
@@ -366,14 +373,18 @@ void DecryptionofSubCipherwthKey (char dsck[], char subck[]){
 
 
 
-}
-printf("%s", dsck);
+    }
+    printf("%s", dsck);
 
 }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// This function uses statiscal analysis of the encrytpted text, and replaces the corresponding letter that occur most ferquently in the order that they are frequent in
+// the english language, so for instance the program take the
+//
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 void DecryptionofSubCipherStats(char dscs[]) {
     int counter[26] = {0},sortedcounter[26] = {0}, counterpos, pos, j, i, counterpos1, whatistheletterfrom0to25;
-    char buf [10000], letter;
+    char buf [1000], letter;
     for(int count = 0; count<strlen(dscs); count++){
             buf[count] = dscs[count];
             }
@@ -403,10 +414,13 @@ void DecryptionofSubCipherStats(char dscs[]) {
     */
     }
 
-    for (i = 0; i < 25; i++)
-        for (j = 0; j < 26-i-1; j++)
-           if (sortedcounter[j] < sortedcounter[j+1])
+    for (i = 0; i < 25; i++) { // This is a bubble sort algorithm it runs through the program i number of times where the i is the length of the string
+        for (j = 0; j < 26-i-1; j++){ // For every value of i the program compares the
+           if (sortedcounter[j] < sortedcounter[j+1]){
               swap(&sortedcounter[j], &sortedcounter[j+1]);
+           }
+        }
+    }
 
 
 
@@ -475,11 +489,11 @@ void DecryptionofSubCipherStats(char dscs[]) {
                         break;
 
                     }
-                   // buf[pos]=letter;
-                }
-               //else continue; //break;
 
-            //continue;
+                }
+
+
+
             }
             buf[pos]=letter;
         }
@@ -492,12 +506,14 @@ void DecryptionofSubCipherStats(char dscs[]) {
 
     return;
 }
-
-
-void swap(int *xp, int *yp) {
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
+/*
+This function is called to sort an array, which is only used for the final task, it take the pointer value of the 2 intergers that were called for a swap between where the interger in
+the array that comes first is shifted to become second in the array if it is smaller than the second interger in the array
+*/
+void swap(int *interger1, int *interger2) {
+    int temp = *interger1;
+    *interger1 = *interger2;
+    *interger2 = temp;
 }
 
 
