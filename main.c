@@ -293,7 +293,7 @@ void DecryptionofRotationCipher(char drc[]){
     /*for(int count = 0; count<strlen(dscs); count++){
             buf[count] = dscs[count];
             }
-           // printf("%s\n", buf); */
+           // printf("%s\n", buf);
             printf("%s\n", dscs);
     for(pos = 0; dscs[pos] != '\0'; pos++){
 
@@ -326,6 +326,11 @@ void DecryptionofRotationCipher(char drc[]){
               swap(&sortedcounter[swapcomp], &sortedcounter[swapcomp+1]);
            }
         }
+    }
+    for (i = 0; i<3; i++){
+        for(counterpos1= 0;counterpos1< 26 ;counterpos++)
+            if(counter[counterpos1] == sortedcounter[i])
+                if(counterpos1<) */
     }
     for(key = 0; key < 26; key++){
         for(int count = 0; count<strlen(drc); count++){
