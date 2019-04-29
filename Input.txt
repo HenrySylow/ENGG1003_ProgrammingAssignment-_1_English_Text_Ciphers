@@ -1,2 +1,19 @@
-PLEASE GET milk AT THE SHOPS
+Menu Number: 4
+HSTQLT UTZ DOSA QZ ZIT LIGHL
 QWERTYUIOPASDFGHJKLZXCVBNM
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to input text:
+First enter what you want to do on line 1.
+If you want to encrypt a message with a rotaion cipher use #1
+If you want to decrypt a message encyrpted with a rotaion cipher and you have the rotaion key #2
+If you want to encrypt a message using a substitution cipher use #3
+If you want to decrypt a message with a substitution cipher with the known substitutions use #4
+If you want to decrypt a message encrypted with a rotaion cipher without the "cipher key" #5
+If you want to decrypt a message with a message encrypted with a substitution cipher without the "cipher key" use #6
+
+Then on Line 2 enter the text you want to modify
+
+On Line 3 if you want the program to decrypt or encrypt a string with a given key enter either the substitution key or the shift key
+
