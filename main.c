@@ -284,10 +284,9 @@ void EncyptionofSubstitutionCipherWthKey(char escs[],char ssk[]){
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 void DecryptionofRotationCipher(char drc[]){
-    int pos, key;
+    int key;
     char letter, buf[1000];
     int counter[26] = {0},sortedcounter[26] = {0}, thingimtrying[26]={0}, counterpos, pos, swapruntime, swapcomp, counterpos1, whatistheletterfrom0to25;
-    char buf [1000], letter;
 
     //printf("%s\n", keyholder);
     /*for(int count = 0; count<strlen(dscs); count++){
@@ -317,10 +316,10 @@ void DecryptionofRotationCipher(char drc[]){
     use a bubble sort to find which letter is the most frequent make this e, then make the second most frequent t then make the 3rd and so on
     write to a file, then using fscanf of the output file compare each word to the dictionary
     if there are no words that match change
-    */
+
     }
 
-       for (swapruntime = 0; swapruntime < 25; swapruntime++) { // This is a bubble sort algorithm it runs through the program i number of times where the i is the length of the string
+    /*   for (swapruntime = 0; swapruntime < 25; swapruntime++) { // This is a bubble sort algorithm it runs through the program i number of times where the i is the length of the string
         for (swapcomp = 0; swapcomp < 26-swapruntime-1; swapcomp++){ // For every value of i the program compares every value to its neibour and swaps it if one is larger
            if (sortedcounter[swapcomp] < sortedcounter[swapcomp+1]){
               swap(&sortedcounter[swapcomp], &sortedcounter[swapcomp+1]);
@@ -330,8 +329,8 @@ void DecryptionofRotationCipher(char drc[]){
     for (i = 0; i<3; i++){
         for(counterpos1= 0;counterpos1< 26 ;counterpos++)
             if(counter[counterpos1] == sortedcounter[i])
-                if(counterpos1<) */
-    }
+                if(counterpos1<)
+    } */
     for(key = 0; key < 26; key++){
         for(int count = 0; count<strlen(drc); count++){
             buf[count] = drc[count];
