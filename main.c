@@ -372,7 +372,7 @@ printf("%s", dsck);
 }
 
 void DecryptionofSubCipherStats(char dscs[]) {
-    int counter[26] = {0},sortedcounter[26] = {0}, counterpos, pos, j, i;
+    int counter[26] = {0},sortedcounter[26] = {0}, counterpos, pos, j, i, counterpos1, whatistheletterfrom0to25;
     char buf [10000], letter;
     for(int count = 0; count<strlen(dscs); count++){
             buf[count] = dscs[count];
@@ -403,16 +403,24 @@ void DecryptionofSubCipherStats(char dscs[]) {
     */
     }
 
-    for (i = 0; i < 26-1; i++)
+    for (i = 0; i < 25; i++)
         for (j = 0; j < 26-i-1; j++)
            if (sortedcounter[j] < sortedcounter[j+1])
               swap(&sortedcounter[j], &sortedcounter[j+1]);
-    for (pos = 0; buf[pos] != '\0'; pos++){
-        letter = buf[pos];
-        for(int counterpos1 = 0; counterpos1<26; counterpos1++){
-            for(counterpos = 0; counterpos<26; counterpos++){
-                if(sortedcounter[counterpos1]==counter[counterpos]){
-                    switch(counterpos){
+
+
+
+    for (pos = 0; buf[pos] != '\0'; ++pos){
+        if(buf[pos]>='A' && buf[pos]<='Z'){
+            letter = buf[pos];
+            whatistheletterfrom0to25 = letter-'A';
+            printf("%d", whatistheletterfrom0to25);
+            for(int counterpos1 = 0; counterpos1<25; counterpos1++){
+                int valueof = sortedcounter[counterpos1];
+
+                if(valueof==counter[whatistheletterfrom0to25]){
+                    printf("Counterpos1 %d  Letter Position %d \n", valueof, whatistheletterfrom0to25);
+                    switch(counterpos1){
                     case 0: letter = 'E';
                         break;
                     case 1: letter = 'T';
@@ -465,21 +473,23 @@ void DecryptionofSubCipherStats(char dscs[]) {
                         break;
                     case 25: letter = 'Z';
                         break;
+
                     }
-                    break;
+                   // buf[pos]=letter;
                 }
-                break;
+               //else continue; //break;
+
+            //continue;
             }
-           // break;
+            buf[pos]=letter;
         }
-      buf[pos]=letter;
     }
 
      printf("%s\n", buf);
 
-
     for (counterpos = 0; counterpos<26; counterpos++){
             printf("%d %d\n", sortedcounter[counterpos], counter[counterpos]);}
+
     return;
 }
 
