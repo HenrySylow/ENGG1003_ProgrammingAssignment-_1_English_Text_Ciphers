@@ -7,7 +7,6 @@ Encrypt with a rotaion cipher
 Decrypt with a rotaion cipher and key
 Encrypt with a substitution key
 Decrypt with a substitution key with given subs
-
 */
 /*
     How to rotation cipher
@@ -295,7 +294,6 @@ void DecryptionofRotationCipher(char drc[]){
            // printf("%s\n", buf);
             printf("%s\n", dscs);
     for(pos = 0; dscs[pos] != '\0'; pos++){
-
             letter = dscs[pos];
             if(letter >= 'a' && letter <= 'z'){
                 letter = letter - 32;
@@ -304,21 +302,17 @@ void DecryptionofRotationCipher(char drc[]){
             if(letter >= 'A' && letter <= 'Z'){
                 counterpos = letter - 'A' ;
                 counter[counterpos]++;
-
             }
     for(int count = 0; count< 26; count++){
             sortedcounter[count] = counter[count];
             //printf("%d\n",sortedcounter[count]);
             }
-
     /*
     Get the array, for each letter increment the coresponding letter
     use a bubble sort to find which letter is the most frequent make this e, then make the second most frequent t then make the 3rd and so on
     write to a file, then using fscanf of the output file compare each word to the dictionary
     if there are no words that match change
-
     }
-
     /*   for (swapruntime = 0; swapruntime < 25; swapruntime++) { // This is a bubble sort algorithm it runs through the program i number of times where the i is the length of the string
         for (swapcomp = 0; swapcomp < 26-swapruntime-1; swapcomp++){ // For every value of i the program compares every value to its neibour and swaps it if one is larger
            if (sortedcounter[swapcomp] < sortedcounter[swapcomp+1]){
@@ -493,7 +487,7 @@ void DecryptionofSubCipherStats(char dscs[]) {
 english language, then I add the letter to a 'key' and change the value in the thingimtrying to 1 so that chjaracter that i replaced is effectivly blocked of from being used again */
 
     for (pos = 0; dscs[pos] != '\0'; ++pos){
-        if(dscs[pos]>='A' && dscs[pos]<='Z'){dscs[pos]=letter;
+        if(dscs[pos]>='A' && dscs[pos]<='Z'){
             letter = dscs[pos];
             whatistheletterfrom0to25 = letter-'A'; //find the letters value from 0-25 so it tells you the letter
             //printf("%d", whatistheletterfrom0to25);
@@ -607,7 +601,3 @@ void Printer(char printer1[]) {
 
 
 }
-
-
-
-
